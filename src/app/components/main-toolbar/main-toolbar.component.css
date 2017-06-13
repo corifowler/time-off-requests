@@ -1,0 +1,18 @@
+.toolbar {
+    background-color: #0B3D92;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #FFFFFF;
+    padding: 1em;
+}
+
+.left-toolbar,
+.right-toolbar {
+    display: flex;
+    flex-direction: row;
+}
+
+.right-toolbar div {
+    padding: 0 1em;
+}
