@@ -1,0 +1,30 @@
+<div class="submit-request-container">
+    <div class="header">CREATE A TIME OFF REQUEST</div>
+    <div class="submit-form">
+        <div>
+            <label>NAME</label>
+            <input [(ngModel)]="name">
+        </div>
+        <div>
+            <label>EMAIL ADDRESS</label>
+            <input [(ngModel)]="emailAddress">
+        </div>
+        <div>
+            <label>START</label>
+            <input [(ngModel)]="startTime" type="date">
+        </div>
+        <div>
+            <label>END</label>
+            <input [(ngModel)]="endTime" type="date">
+        </div>
+        <div>
+            <label>REASON</label>
+            <input [(ngModel)]="reason">
+        </div>
+        <div>
+            <label>COMMENTS</label>
+            <textarea [(ngModel)]="comments"></textarea>
+        </div>
+        <button (click)="submitRequest()">SUBMIT</button>
+    </div>
+</div>
