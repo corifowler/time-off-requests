@@ -1,0 +1,8 @@
+<div class="approvals-container">
+    <div class="header">Requests</div>
+    <div *ngFor="let d of sampleData" (click)="reviewRequest(d.Id)" class="request-list-item">
+        <div>{{d.Name}}</div>
+        <div>{{d.StartTime}} to {{d.EndTime}}</div>
+        <div class="status">{{d.Status}}</div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { TimeOffRequestActions } from '../../actionHandlers/timeOffRequest.actions';
+import { Request } from '../../models/request';
 
 @Component({
   selector: 'submit-request',
@@ -20,7 +21,20 @@ export class SubmitRequestComponent {
     ) {}
 
     private submitRequest() {
-        console.log(this.startTime, this.endTime);
-        this._timeOffRequestActions.getTimeOffRequests();
+        let request = this.createRequest();
+        console.log(request);
+    }
+
+    private createRequest(): Request {
+        let request = new Request();
+        request.Id = null;
+        request.Name = this.name;
+        request.EmailAddress = this.emailAddress;
+        request.StartTime = this.startTime;
+        request.EndTime = this.endTime;
+        request.Reason = this.reason;
+        request.Status = 'Awaiting Approval';
+        request.Comments = this.comments ? this.comments : '';
+        return request;
     }
 }

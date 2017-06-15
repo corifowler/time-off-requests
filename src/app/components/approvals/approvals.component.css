@@ -1,0 +1,20 @@
+.request-list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.header {
+    text-align: center;
+    font-weight: bold;
+    padding: 0.5em;
+    font-size: 2em;
+}
+
+.status {
+    color: #999A9A;
+    font-style: italic;
+}
