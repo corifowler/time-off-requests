@@ -22,7 +22,7 @@ export class SubmitRequestComponent {
 
     private submitRequest() {
         let request = this.createRequest();
-        console.log(request);
+        this._timeOffRequestActions.postTimeOffRequest(request);
     }
 
     private createRequest(): Request {

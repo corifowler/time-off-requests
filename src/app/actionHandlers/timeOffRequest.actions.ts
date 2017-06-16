@@ -1,18 +1,76 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ApiService } from '../services/api.service';
+import { Store } from '@ngrx/store';
+
+import { ADD_TIME_OFF_REQUESTS, UPDATE_SELECTED_REQUEST } from '../stores/timeOffRequests.store';
 
 @Injectable()
 export class TimeOffRequestActions {
+    private sampleData = [
+		{
+			Id: 1,
+			Name: "Charlie Brown",
+			EmailAddress: "sample string 3",
+			StartTime: "Jun 25 2017",
+			EndTime: "Jun 28 2017",
+			Reason: "Family vacation",
+			Status: "Awaiting Approval",
+			Comments: ""
+		},
+		{
+			Id: 2,
+			Name: "sample string 2",
+			EmailAddress: "sample string 3",
+			StartTime: "sample string 4",
+			EndTime: "sample string 5",
+			Reason: "sample string 6",
+			Status: "Awaiting Approval",
+			Comments: "sample string 8"
+		}
+	];
+
     constructor(
-        private _apiService: ApiService
+        private _apiService: ApiService,
+        private _store: Store<any>
     ) {}
 
+    public updateSelectedRequest(request) {
+        this._store.dispatch({
+            type: UPDATE_SELECTED_REQUEST,
+            payload: request
+        });
+    }
+
     public getTimeOffRequests() {
+        this._store.dispatch({
+            type: ADD_TIME_OFF_REQUESTS,
+            payload: this.sampleData
+        });
+
         this._apiService.getTimeOffRequests().subscribe(
             res => {
-                console.log(res);
+                if (res) {
+                   this._store.dispatch({
+                        type: ADD_TIME_OFF_REQUESTS,
+                        payload: this.sampleData
+                    }); 
+                }
+            },
+            err => {
+                console.log(err);
             }
         );
+    }
+
+    public postTimeOffRequest(request) {
+        this._apiService.postTimeOffRequest(request).subscribe(
+            res => {
+                console.log(res);
+            },
+            err => {
+                console.log(err);
+            }
+        )
     }
 }

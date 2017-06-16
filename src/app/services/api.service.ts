@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Jsonp } from '@angular/http';
+import { Http, Headers, Jsonp, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
@@ -14,8 +14,10 @@ export class ApiService {
         private _jsonp: Jsonp
     ) {}
 
-    public getTimeOffRequests(): Observable<any> {
-        // return this._jsonp.get(this.apiBaseUrl)
+    public getTimeOffRequests() : Observable<any> {
+        // let params = new URLSearchParams();
+        // params.set('callback', 'JSONP_CALLBACK');
+        // return this._jsonp.get(this.apiBaseUrl, {search: params})
         //     .map(res => {
         //         let response = res.json();
         //         console.log('1', response);
@@ -26,8 +28,7 @@ export class ApiService {
 
         return this._http.get(this.apiBaseUrl)
             .map(res => {
-                let response = res.json();
-                console.log('1', response);
+                return res.json();
             })
             .catch(err => {
                 return Observable.throw(err);
@@ -38,7 +39,17 @@ export class ApiService {
 
     }
 
-    public postTimeOffRequest() {
+    public postTimeOffRequest(request): Observable<any> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+
+        return this._http.post(this.apiBaseUrl, JSON.stringify(request), { headers })
+            .map(res => {
+                console.log(res.json());
+                return res.json();
+            })
+            .catch(err => {
+                return Observable.throw(err);
+            });
 
     }
 

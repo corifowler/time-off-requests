@@ -8,6 +8,7 @@ import { APP_ACTIONS } from './app.actions';
 import { APP_COMPONENTS } from './app.components';
 import { APP_ROUTES } from './app.routes';
 import { APP_SERVICES } from './app.services';
+import { APP_STORES } from './app.stores';
 import { AppComponent } from './components/app/app.component';
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AppComponent } from './components/app/app.component';
     FormsModule,
     HttpModule,
     JsonpModule,
-    RouterModule.forRoot(APP_ROUTES)
+    RouterModule.forRoot(APP_ROUTES),
+    ...APP_STORES
   ],
   providers: [
     ...APP_ACTIONS,
