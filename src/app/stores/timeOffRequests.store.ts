@@ -10,10 +10,8 @@ export const timeOffRequests = (state: Array<Request> = [], action: Action) => {
 
     switch(action.type) {
         case ADD_TIME_OFF_REQUESTS:
-            newState = cloneState(state);
-            newState = newState.concat(action.payload);
-            return newState;
-
+            return action.payload;
+            
         default:
             return state;
     }

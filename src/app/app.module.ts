@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { APP_ACTIONS } from './app.actions';
@@ -19,7 +19,6 @@ import { AppComponent } from './components/app/app.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    JsonpModule,
     RouterModule.forRoot(APP_ROUTES),
     ...APP_STORES
   ],

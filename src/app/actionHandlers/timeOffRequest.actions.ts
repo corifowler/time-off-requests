@@ -43,17 +43,12 @@ export class TimeOffRequestActions {
     }
 
     public getTimeOffRequests() {
-        this._store.dispatch({
-            type: ADD_TIME_OFF_REQUESTS,
-            payload: this.sampleData
-        });
-
         this._apiService.getTimeOffRequests().subscribe(
             res => {
                 if (res) {
                    this._store.dispatch({
                         type: ADD_TIME_OFF_REQUESTS,
-                        payload: this.sampleData
+                        payload: res
                     }); 
                 }
             },
@@ -67,6 +62,17 @@ export class TimeOffRequestActions {
         this._apiService.postTimeOffRequest(request).subscribe(
             res => {
                 console.log(res);
+            },
+            err => {
+                console.log(err);
+            }
+        )
+    }
+
+    public updateTimeOffRequest(request) {
+        this._apiService.updateTimeOffRequest(request).subscribe(
+            res => {
+                
             },
             err => {
                 console.log(err);

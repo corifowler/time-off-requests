@@ -1,1 +1,36 @@
-<div>{{ request }}</div>
+<div class="request-container" *ngIf="request">
+    <div class="header">
+        Request {{request.Id}} -
+        <span class="status" [class.awaiting-approval]="request.Status === 'Awaiting Approval'" [class.approved]="request.Status === 'Approved'" [class.rejected]="request.Status === 'Rejected'">{{request.Status}}</span>
+    </div>
+    <div class="row">
+        <div class="label">Employee: </div>
+        <div>{{request.Name}}</div>
+    </div>
+    <div class="row">
+        <div class="label">Start Date: </div>
+        <div>{{request.StartTime | date: 'MM/dd/yy'}}</div>
+    </div>
+    <div class="row">
+        <div class="label">End Date: </div>
+        <div>{{request.EndTime | date: 'MM/dd/yy'}}</div>
+    </div>
+    <div class="row">
+        <div class="label">Reason: </div>
+        <div>{{request.Reason}}</div>
+    </div>
+    <div class="row">
+        <div class="label">Comments: </div>
+        <div>{{request.Comments}}</div>
+    </div>
+    <div class="button-row">
+        <button (click)="approveRequest()">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            APPROVE
+        </button>
+        <button (click)="rejectRequest()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            REJECT
+        </button>
+    </div>
+</div>

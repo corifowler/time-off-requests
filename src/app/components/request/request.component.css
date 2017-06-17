@@ -1,0 +1,58 @@
+.request-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-row {
+    display: flex;
+    padding: 1em;
+    align-self: center;
+}
+
+button {
+    margin: 0 1em;
+    border: 1px solid black;
+    background: none;
+    font-family: inherit;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.row div {
+    min-width: 5em;
+}
+
+.label {
+    font-weight: bold;
+    margin-right: 1em;
+}
+
+.header {
+    font-size: 1.5em;
+    align-self: center;
+    margin-bottom: 1em;
+}
+
+.status {
+    font-style: italic;
+}
+
+.awaiting-approval {
+    color: #999A9A;
+}
+
+.fa-check,
+.approved {
+    color: #5BB85D;
+}
+
+.fa-times,
+.rejected {
+    color: #E4655F;
+}

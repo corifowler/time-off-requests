@@ -15,19 +15,21 @@ export class SubmitRequestComponent {
     private endTime;
     private reason: string;
     private comments: string;
+    private lastId: number = 0;
 
     constructor(
         private _timeOffRequestActions: TimeOffRequestActions
     ) {}
 
     private submitRequest() {
+        this.lastId++;
         let request = this.createRequest();
         this._timeOffRequestActions.postTimeOffRequest(request);
     }
 
     private createRequest(): Request {
         let request = new Request();
-        request.Id = null;
+        request.Id = this.lastId;
         request.Name = this.name;
         request.EmailAddress = this.emailAddress;
         request.StartTime = this.startTime;
