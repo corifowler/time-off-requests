@@ -24,7 +24,13 @@ export class ApiService {
     }
 
     public getTimeOffRequest(requestId) {
-
+        return this._http.get(this.apiBaseUrl + `/${requestId}`)
+            .map(res => {
+                return res.json();
+            })
+            .catch(err => {
+                return Observable.throw(err);
+            });
     }
 
     public postTimeOffRequest(request): Observable<any> {

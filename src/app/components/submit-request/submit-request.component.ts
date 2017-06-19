@@ -38,7 +38,6 @@ export class SubmitRequestComponent implements OnInit {
                 this.lastId = requests.length;
             }
         );   
-        console.log(moment);
     }
 
     private submitRequest() {

@@ -58,6 +58,20 @@ export class TimeOffRequestActions {
         );
     }
 
+    public getTimeOffRequest(requestId) {
+        this._apiService.getTimeOffRequest(requestId).subscribe(
+            request => {
+                this._store.dispatch({
+                    type: UPDATE_SELECTED_REQUEST,
+                    payload: request
+                });
+            },
+            err => {
+                console.log(err);
+            }
+        )
+    }
+
     public postTimeOffRequest(request) {
         this._apiService.postTimeOffRequest(request).subscribe(
             res => {
