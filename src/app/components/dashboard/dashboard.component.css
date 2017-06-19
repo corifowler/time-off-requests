@@ -1,0 +1,18 @@
+.options-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.admin {
+    margin-right: 1em;
+}
+
+.admin,
+.employee {
+    color: #0B3D92;
+    border: 1px solid #0B3D92;
+    padding: 2em;
+    font-size: 2em;
+}

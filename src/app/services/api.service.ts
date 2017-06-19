@@ -23,7 +23,7 @@ export class ApiService {
             });
     }
 
-    public getTimeOffRequest() {
+    public getTimeOffRequest(requestId) {
 
     }
 
@@ -53,8 +53,15 @@ export class ApiService {
             });
     }
 
-    public deleteTimeOffRequest() {
-
+    public deleteTimeOffRequest(requestId) {
+        return this._http.delete(this.apiBaseUrl + `/${requestId}`)
+            .map(res => {
+                console.log(res.json());
+                return res.json();
+            })
+            .catch(err => {
+                return Observable.throw(err);
+            })
     }
 }
 

@@ -66,17 +66,29 @@ export class TimeOffRequestActions {
             err => {
                 console.log(err);
             }
-        )
+        );
     }
 
     public updateTimeOffRequest(request) {
         this._apiService.updateTimeOffRequest(request).subscribe(
             res => {
-                
+                // refresh requests if successful update
+                this._apiService.getTimeOffRequests();
             },
             err => {
                 console.log(err);
             }
-        )
+        );
+    }
+
+    public deleteTimeOffRequest(requestId) {
+        this._apiService.deleteTimeOffRequest(requestId).subscribe(
+            res => {
+
+            },
+            err => {
+                console.log(err);
+            }
+        );
     }
 }

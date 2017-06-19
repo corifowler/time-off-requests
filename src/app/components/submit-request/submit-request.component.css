@@ -1,3 +1,27 @@
+.submit-request-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
 textarea {
     resize: none;
+}
+
+button {
+    border: 1px solid black;
+    background: none;
+    font-family: inherit;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.header {
+    font-size: 2em;
+    align-self: center;
+}
+
+.submit-form {
+    align-self: center;
+    padding: 1em;
 }
