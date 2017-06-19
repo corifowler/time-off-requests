@@ -1,30 +1,34 @@
 <div class="submit-request-container">
     <div class="header">Create Request</div>
+    <div *ngIf="validRequest === false" class="error-message invalid-label">Form is not valid, errors highlighted below</div>
     <div class="submit-form">
-        <div>
-            <label>NAME</label>
-            <input [(ngModel)]="name">
+        <div class="form-row">
+            <label [class.invalid-label]="validFormElements.name === false">* NAME</label>
+            <input [(ngModel)]="name" [class.invalid]="validFormElements.name === false">
         </div>
-        <div>
-            <label>EMAIL ADDRESS</label>
-            <input [(ngModel)]="emailAddress">
+        <div class="form-row">
+            <label [class.invalid-label]="validFormElements.emailAddress === false">* EMAIL ADDRESS</label>
+            <input [(ngModel)]="emailAddress" [class.invalid]="validFormElements.emailAddress === false">
         </div>
-        <div>
-            <label>START</label>
-            <input [(ngModel)]="startTime" type="date">
+        <div class="form-row">
+            <label [class.invalid-label]="validFormElements.startTime === false">* START</label>
+            <input [(ngModel)]="startTime" type="date" [class.invalid]="validFormElements.startTime === false">
         </div>
-        <div>
-            <label>END</label>
-            <input [(ngModel)]="endTime" type="date">
+        <div class="form-row">
+            <label [class.invalid-label]="validFormElements.endTime === false">* END</label>
+            <input [(ngModel)]="endTime" type="date" [class.invalid]="validFormElements.endTime === false">
         </div>
-        <div>
-            <label>REASON</label>
-            <input [(ngModel)]="reason">
+        <div class="form-row">
+            <label [class.invalid-label]="validFormElements.reason === false">* REASON</label>
+            <input [(ngModel)]="reason" [class.invalid]="validFormElements.reason === false">
         </div>
-        <div>
+        <div class="form-row">
             <label>COMMENTS</label>
             <textarea [(ngModel)]="comments"></textarea>
         </div>
-        <button (click)="submitRequest()">SUBMIT</button>
+        <div class="button-row">
+            <button (click)="submitRequest()">SUBMIT</button>
+            <button (click)="cancelRequest()">CANCEL</button>
+        </div>
     </div>
 </div>

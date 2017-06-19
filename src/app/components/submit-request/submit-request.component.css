@@ -6,6 +6,7 @@
 
 textarea {
     resize: none;
+    height: 5em;
 }
 
 button {
@@ -14,6 +15,7 @@ button {
     font-family: inherit;
     border-radius: 5px;
     font-size: 1em;
+    margin-left: 1em;
 }
 
 .header {
@@ -24,4 +26,42 @@ button {
 .submit-form {
     align-self: center;
     padding: 1em;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 18em;
+    padding: 0.5em;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+}
+
+input,
+textarea {
+    font-family: inherit;
+    font-size: 1em;
+    width: 12em;
+}
+
+label {
+    margin-right: 1em;
+}
+
+.invalid {
+    border: 1px solid #E4655F;
+}
+
+.invalid-label {
+    color: #E4655F;
+}
+
+.error-message {
+    align-self: center;
+    font-style: italic;
 }

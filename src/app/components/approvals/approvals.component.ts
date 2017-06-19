@@ -20,8 +20,6 @@ export class ApprovalsComponent implements OnInit, OnDestroy {
 	) {}
 
 	public ngOnInit() {
-		this._timeOffRequestActions.getTimeOffRequests();
-
 		this.timeOffRequestsSubscription = this._store.select('timeOffRequests').subscribe(
 			requests => {
 				if (requests) {

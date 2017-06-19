@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as moment from 'moment';
 import { TimeOffRequestActions } from '../../actionHandlers/timeOffRequest.actions';
 import { Request } from '../../models/request';
 
@@ -8,7 +9,7 @@ import { Request } from '../../models/request';
   templateUrl: './submit-request.component.html',
   styleUrls: ['./submit-request.component.css']
 })
-export class SubmitRequestComponent {
+export class SubmitRequestComponent implements OnInit {
     private name: string;
     private emailAddress: string;
     private startTime;
@@ -16,15 +17,40 @@ export class SubmitRequestComponent {
     private reason: string;
     private comments: string;
     private lastId: number = 0;
+    private timeOffRequestsSubscription;
+    private validRequest: boolean;
+    private validFormElements = {
+        name: undefined,
+        emailAddress: undefined,
+        reason: undefined,
+        startTime: undefined,
+        endTime: undefined
+    }
 
     constructor(
+        private _store: Store<any>,
         private _timeOffRequestActions: TimeOffRequestActions
     ) {}
+
+    public ngOnInit() {
+        this.timeOffRequestsSubscription = this._store.select('timeOffRequests').subscribe(
+            (requests: Array<any>) => {
+                this.lastId = requests.length;
+            }
+        );   
+        console.log(moment);
+    }
 
     private submitRequest() {
         this.lastId++;
         let request = this.createRequest();
-        this._timeOffRequestActions.postTimeOffRequest(request);
+        this.validRequest = this.validateRequest(request);
+        if (this.validRequest) {
+            this._timeOffRequestActions.postTimeOffRequest(request);
+        } else {
+            console.log('not valid', this.validFormElements.emailAddress);
+            // error messages
+        }
     }
 
     private createRequest(): Request {
@@ -38,5 +64,29 @@ export class SubmitRequestComponent {
         request.Status = 'Awaiting Approval';
         request.Comments = this.comments ? this.comments : '';
         return request;
+    }
+
+    private validateRequest(request): boolean {
+        let dateIsValid;
+        // time validation
+        if (request.StartTime && request.EndTime) {
+            dateIsValid = (moment(request.StartTime).isBefore(moment(request.EndTime)) || request.StartTime === request.EndTime);
+        } 
+        // validations - name, email address, valid dates, reason req'd
+        if (request.Name && request.EmailAddress && request.Reason && dateIsValid) {
+            return true;
+        } else {
+            // set error notifications
+            this.validFormElements.name = request.Name ? true : false;
+            this.validFormElements.emailAddress = request.EmailAddress ? true : false;
+            this.validFormElements.reason = request.Reason ? true : false;
+            this.validFormElements.startTime = request.StartTime ? true : false;
+            this.validFormElements.endTime = request.EndTime ? true : false;
+            return false;
+        }
+    }
+
+    private cancelRequest() {
+        console.log('cancel');
     }
 }

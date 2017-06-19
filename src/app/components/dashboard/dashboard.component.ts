@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TimeOffRequestActions } from '../../actionHandlers/timeOffRequest.actions';
 
 @Component({
     selector: 'dashboard',

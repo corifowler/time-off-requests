@@ -61,7 +61,7 @@ export class TimeOffRequestActions {
     public postTimeOffRequest(request) {
         this._apiService.postTimeOffRequest(request).subscribe(
             res => {
-                console.log(res);
+                this.getTimeOffRequests();
             },
             err => {
                 console.log(err);
@@ -73,7 +73,7 @@ export class TimeOffRequestActions {
         this._apiService.updateTimeOffRequest(request).subscribe(
             res => {
                 // refresh requests if successful update
-                this._apiService.getTimeOffRequests();
+                this.getTimeOffRequests();
             },
             err => {
                 console.log(err);
