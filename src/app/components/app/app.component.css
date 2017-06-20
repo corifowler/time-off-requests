@@ -1,5 +1,6 @@
 .app-container {
     font-family: 'Source Sans Pro', sans-serif;
+    overflow: hidden;
 }
 
 .router-container {
