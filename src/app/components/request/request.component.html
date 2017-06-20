@@ -5,25 +5,25 @@
     </div>
     <div class="row">
         <div class="label">Employee: </div>
-        <div>{{request.Name}}</div>
+        <div class="description">{{request.Name}}</div>
     </div>
     <div class="row">
         <div class="label">Start Date: </div>
-        <div>{{request.StartTime | date: 'MM/dd/yy'}}</div>
+        <div class="description">{{request.StartTime | date: 'MM/dd/yy'}}</div>
     </div>
     <div class="row">
         <div class="label">End Date: </div>
-        <div>{{request.EndTime | date: 'MM/dd/yy'}}</div>
+        <div class="description">{{request.EndTime | date: 'MM/dd/yy'}}</div>
     </div>
     <div class="row">
         <div class="label">Reason: </div>
-        <div>{{request.Reason}}</div>
+        <div class="description">{{request.Reason}}</div>
     </div>
     <div class="row">
         <div class="label">Comments: </div>
-        <div>{{request.Comments}}</div>
+        <div class="description">{{request.Comments}}</div>
     </div>
-    <div class="button-row">
+    <div *ngIf="showAdminButtons" class="button-row">
         <button (click)="approveRequest()">
             <i class="fa fa-check" aria-hidden="true"></i>
             APPROVE

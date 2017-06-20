@@ -12,12 +12,14 @@ import { TimeOffRequestActions } from '../../actionHandlers/timeOffRequest.actio
 export class RequestComponent implements OnInit, OnDestroy {
     private requestId: string;
     private selectedRequestSubscription;
+    private appStateSubscription;
     private request;
     private statusOptions = {
         awaitingApproval: 'Awaiting Approval',
         approved: 'Approved',
         rejected: 'Rejected'
     };
+    private showAdminButtons: boolean;
 
     constructor(
         private _store: Store<any>,
@@ -27,6 +29,7 @@ export class RequestComponent implements OnInit, OnDestroy {
 
     public ngOnInit() {
         this.requestId = this._route.snapshot.params['id'];
+
         this.selectedRequestSubscription = this._store.select('selectedTimeOffRequest').subscribe(
             request => {
                 if (request) {
@@ -35,11 +38,18 @@ export class RequestComponent implements OnInit, OnDestroy {
                     this._timeOffRequestActions.getTimeOffRequest(this.requestId);
                 }
             }
-        )
+        );
+
+        this.appStateSubscription = this._store.select('appState').subscribe(
+            appState => {
+                this.showAdminButtons = appState['adminReview'];
+            }
+        );
     }
 
     public ngOnDestroy() {
         this.selectedRequestSubscription.unsubscribe();
+        this.appStateSubscription.unsubscribe();
     }
 
     private approveRequest() {

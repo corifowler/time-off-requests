@@ -4,6 +4,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MainToolbarComponent } from './components/main-toolbar/main-toolbar.component';
 import { RequestComponent } from './components/request/request.component';
 import { SubmitRequestComponent } from './components/submit-request/submit-request.component';
+import { UpdateRequestComponent } from './components/update-request/update-request.component';
 
 export const APP_COMPONENTS = [
     AppComponent,
@@ -11,5 +12,6 @@ export const APP_COMPONENTS = [
     DashboardComponent,
     MainToolbarComponent,
     RequestComponent,
-    SubmitRequestComponent
+    SubmitRequestComponent,
+    UpdateRequestComponent
 ]

@@ -1,8 +1,7 @@
 .options-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    margin-top: 2em;
 }
 
 .admin {
@@ -12,7 +11,53 @@
 .admin,
 .employee {
     color: #0B3D92;
-    border: 1px solid #0B3D92;
-    padding: 2em;
-    font-size: 2em;
+    font-size: 1.25em;
+    cursor: pointer;
+}
+
+.request-list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.status {
+    font-style: italic;
+}
+
+.awaiting-approval {
+    color: #999A9A;
+}
+
+.approved {
+    color: #5BB85D;
+}
+
+.rejected,
+.number {
+    color: #E4655F;
+}
+
+.selected {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.number {
+    font-weight: bold;
+}
+
+.admin-messages,
+.employee-messages {
+    padding: 1em 0;
+}
+
+.submit-link {
+    text-decoration: underline;
+    font-style: italic;
+    color: #0B3D92;
+    cursor: pointer;
 }

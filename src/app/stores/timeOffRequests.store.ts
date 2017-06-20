@@ -3,7 +3,31 @@ import { Request } from '../models/request';
 
 export const   
     ADD_TIME_OFF_REQUESTS = 'ADD_TIME_OFF_REQUESTS',
-    UPDATE_SELECTED_REQUEST = 'UPDATE_SELECTED_REQUEST';
+    UPDATE_SELECTED_REQUEST = 'UPDATE_SELECTED_REQUEST',
+    UPDATE_ADMIN_REVIEW = 'UPDATE_ADMIN_REVIEW';
+
+var initialAppState = {
+    adminReview: false
+};
+
+var cloneState = (state) => {
+    return JSON.parse(JSON.stringify(state));
+};
+
+export const appState = (state = initialAppState, action: Action) => {
+    var newState;
+
+    switch(action.type) {
+
+        case UPDATE_ADMIN_REVIEW:
+            newState = cloneState(state);
+            newState.adminReview = action.payload;
+            return newState;
+
+        default:
+            return state;
+    }
+};
 
 export const timeOffRequests = (state: Array<Request> = [], action: Action) => {
     var newState;
@@ -15,7 +39,7 @@ export const timeOffRequests = (state: Array<Request> = [], action: Action) => {
         default:
             return state;
     }
-}
+};
 
 export const selectedTimeOffRequest = (state: Request = null, action: Action) => {
     switch (action.type) {
@@ -25,8 +49,4 @@ export const selectedTimeOffRequest = (state: Request = null, action: Action) =>
         default: 
             return state;
     }
-}
-
-var cloneState = (state) => {
-    return JSON.parse(JSON.stringify(state));
-}
+};

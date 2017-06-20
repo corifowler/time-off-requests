@@ -1,0 +1,67 @@
+.submit-request-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+textarea {
+    resize: none;
+    height: 5em;
+}
+
+button {
+    border: 1px solid black;
+    background: none;
+    font-family: inherit;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-left: 1em;
+}
+
+.header {
+    font-size: 2em;
+    align-self: center;
+}
+
+.submit-form {
+    align-self: center;
+    padding: 1em;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 18em;
+    padding: 0.5em;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+}
+
+input,
+textarea {
+    font-family: inherit;
+    font-size: 1em;
+    width: 12em;
+}
+
+label {
+    margin-right: 1em;
+}
+
+.invalid {
+    border: 1px solid #E4655F;
+}
+
+.invalid-label {
+    color: #E4655F;
+}
+
+.error-message {
+    align-self: center;
+    font-style: italic;
+}

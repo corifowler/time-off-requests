@@ -1,24 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as moment from 'moment';
 import { TimeOffRequestActions } from '../../actionHandlers/timeOffRequest.actions';
 import { Request } from '../../models/request';
 
 @Component({
-  selector: 'submit-request',
-  templateUrl: './submit-request.component.html',
-  styleUrls: ['./submit-request.component.css']
+  selector: 'update-request',
+  templateUrl: './update-request.component.html',
+  styleUrls: ['./update-request.component.css']
 })
-export class SubmitRequestComponent implements OnInit {
-    private name: string;
-    private emailAddress: string;
-    private startTime;
-    private endTime;
-    private reason: string;
-    private comments: string;
-    private lastId: number = 0;
-    private timeOffRequestsSubscription;
+export class UpdateRequestComponent implements OnInit {
+    private timeOffRequestSubscription;
     private validRequest: boolean;
     private validFormElements = {
         name: undefined,
@@ -27,45 +20,37 @@ export class SubmitRequestComponent implements OnInit {
         startTime: undefined,
         endTime: undefined
     }
+    private request: Request;
+    private id: number;
 
     constructor(
         private _store: Store<any>,
         private _router: Router,
+        private _route: ActivatedRoute,
         private _timeOffRequestActions: TimeOffRequestActions
     ) {}
 
     public ngOnInit() {
-        this.timeOffRequestsSubscription = this._store.select('timeOffRequests').subscribe(
-            (requests: Array<any>) => {
-                this.lastId = requests.length;
+        this.id = this._route.snapshot.params['id'];
+        this.timeOffRequestSubscription = this._store.select('selectedTimeOffRequest').subscribe(
+            (request: Request) => {
+                if (request) {
+                    this.request = request;
+                } else {
+                    this._timeOffRequestActions.getTimeOffRequest(this.id);
+                }
             }
-        );   
+        )
     }
 
-    private submitRequest() {
-        this.lastId++;
-        let request = this.createRequest();
-        this.validRequest = this.validateRequest(request);
+    private saveRequest() {
+        this.request.Status = 'Awaiting Approval';
+        this.validRequest = this.validateRequest(this.request);
         if (this.validRequest) {
-            this._timeOffRequestActions.postTimeOffRequest(request);
-            // this._router.navigate(['/requests', request.Id]);
+            this._timeOffRequestActions.updateTimeOffRequest(this.request);
         } else {
-            console.log('not valid', this.validFormElements.emailAddress);
             // error messages
         }
-    }
-
-    private createRequest(): Request {
-        let request = new Request();
-        request.Id = this.lastId;
-        request.Name = this.name;
-        request.EmailAddress = this.emailAddress;
-        request.StartTime = this.startTime;
-        request.EndTime = this.endTime;
-        request.Reason = this.reason;
-        request.Status = 'Awaiting Approval';
-        request.Comments = this.comments ? this.comments : '';
-        return request;
     }
 
     private validateRequest(request): boolean {
@@ -90,5 +75,9 @@ export class SubmitRequestComponent implements OnInit {
 
     private cancelRequest() {
         this._router.navigate(['/']);
+    }
+
+    private deleteRequest() {
+        this._timeOffRequestActions.deleteTimeOffRequest(this.request.Id);
     }
 }

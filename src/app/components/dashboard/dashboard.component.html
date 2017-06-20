@@ -1,10 +1,34 @@
 <div class="dashboard">
     <div class="options-container">
-        <div (click)="goToPage('requests')" class="admin">
+        <div (click)="goToPage('admin')" class="admin" [class.selected]="adminDashboard">
             ADMIN
         </div>
-        <div (click)="goToPage('submit-request')" class="employee">
+        <div (click)="goToPage('employee')" class="employee" [class.selected]="employeeDashboard">
             EMPLOYEE
         </div>
+    </div>
+    <div *ngIf="adminDashboard" class="admin-messages">
+        You have <span class="number">{{numberOfOutstandingRequests}}</span> requests waiting for approval.
+    </div>
+    <div *ngIf="employeeDashboard" class="employee-messages">
+        Review requests or <span (click)="goToSubmit()" class="submit-link">submit a new request</span>.
+    </div>
+    <div *ngIf="timeOffRequests && adminDashboard" class="requests-container">
+        <ng-template ngFor let-request [ngForOf]="timeOffRequests">
+            <div (click)="approveRequest(request.Id)" *ngIf="request.Status === 'Awaiting Approval'" class="request-list-item">
+                <div>{{request.Name}}</div>
+                <div>{{request.StartTime | date: 'MM/dd/yy'}} to {{request.EndTime | date: 'MM/dd/yy'}}</div>
+                <div [class.approved]="request.Status === 'Approved'" [class.rejected]="request.Status === 'Rejected'" [class.awaiting-approval]="request.Status === 'Awaiting Approval'" class="status">{{request.Status}}</div>
+            </div>
+        </ng-template>
+    </div>
+    <div *ngIf="timeOffRequests && employeeDashboard" class="requests-container">
+        <ng-template ngFor let-request [ngForOf]="timeOffRequests" let-i="index">
+            <div (click)="updateRequest(request)" class="request-list-item">
+                <div>{{request.Name}}</div>
+                <div>{{request.StartTime | date: 'MM/dd/yy'}} to {{request.EndTime | date: 'MM/dd/yy'}}</div>
+                <div [class.approved]="request.Status === 'Approved'" [class.rejected]="request.Status === 'Rejected'" [class.awaiting-approval]="request.Status === 'Awaiting Approval'" class="status">{{request.Status}}</div>
+            </div>
+        </ng-template>
     </div>
 </div>
