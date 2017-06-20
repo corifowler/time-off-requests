@@ -43,12 +43,25 @@ button {
     padding: 1em;
 }
 
+.header-row {
+    display: flex;
+    justify-content: space-between;
+}
+
 input,
 textarea {
-    font-family: inherit;
-    font-size: 1em;
-    width: 12em;
+    width: 16em;
     border: 1px solid black;
+    font-family: inherit;
+    padding: 0.25em;
+}
+
+@media(min-width: 768px) {
+    input,
+    textarea {
+        font-size: 1em;
+        width: 20em;
+    }
 }
 
 label {

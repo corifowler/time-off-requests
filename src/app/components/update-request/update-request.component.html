@@ -1,7 +1,14 @@
 <div class="submit-request-container">
-    <div class="header">Update Request</div>
+    <div class="header-row">
+        <div class="header">Update Request</div>
+        <div class="button-row">
+            <button (click)="saveRequest()">SAVE</button>
+            <button (click)="deleteRequest()">DELETE</button>
+            <button (click)="cancelRequest()">CANCEL</button>
+        </div>
+    </div>
     <div *ngIf="validRequest === false" class="error-message invalid-label">Form is not valid, errors highlighted below</div>
-    <div class="submit-form">
+    <div *ngIf="request" class="submit-form">
         <div class="form-row">
             <label [class.invalid-label]="validFormElements.name === false">* NAME</label>
             <input [(ngModel)]="request.Name" [class.invalid]="validFormElements.name === false">
@@ -25,11 +32,6 @@
         <div class="form-row">
             <label>COMMENTS</label>
             <textarea [(ngModel)]="request.Comments"></textarea>
-        </div>
-        <div class="button-row">
-            <button (click)="saveRequest()">SAVE</button>
-            <button (click)="deleteRequest()">DELETE</button>
-            <button (click)="cancelRequest()">CANCEL</button>
         </div>
     </div>
 </div>

@@ -14,7 +14,7 @@ var cloneState = (state) => {
     return JSON.parse(JSON.stringify(state));
 };
 
-export const appState = (state = initialAppState, action: Action) => {
+export function appState(state = initialAppState, action: Action) {
     var newState;
 
     switch(action.type) {
@@ -29,7 +29,7 @@ export const appState = (state = initialAppState, action: Action) => {
     }
 };
 
-export const timeOffRequests = (state: Array<Request> = [], action: Action) => {
+export function timeOffRequests(state: Array<Request> = [], action: Action) {
     var newState;
 
     switch(action.type) {
@@ -41,7 +41,7 @@ export const timeOffRequests = (state: Array<Request> = [], action: Action) => {
     }
 };
 
-export const selectedTimeOffRequest = (state: Request = null, action: Action) => {
+export function selectedTimeOffRequest(state: Request = null, action: Action) {
     switch (action.type) {
         case UPDATE_SELECTED_REQUEST:
             return action.payload;
