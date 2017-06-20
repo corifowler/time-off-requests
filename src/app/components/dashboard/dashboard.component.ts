@@ -10,8 +10,8 @@ import { Request } from '../../models/request';
     styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-    private adminDashboard: boolean;
-    private employeeDashboard: boolean = true;
+    private adminDashboard: boolean = true;
+    private employeeDashboard: boolean;
     private timeOffRequests: Array<Request>;
     private timeOffRequestsSubscription;
     private numberOfOutstandingRequests: number;
@@ -31,6 +31,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 }
             }
         );
+
+        this._timeOffRequestActions.updateAdminView(true);
     }
 
     public ngOnDestroy() {
@@ -58,8 +60,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     }
 
-    private approveRequest(requestId) {
-        this._router.navigate(['/requests', requestId]);
+    private approveRequest(request) {
+        this._timeOffRequestActions.updateSelectedRequest(request);
+        this._router.navigate(['requests', request.Id]);
     }
 
     private updateRequest(request) {

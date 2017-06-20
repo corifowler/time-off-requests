@@ -15,7 +15,7 @@
     </div>
     <div *ngIf="timeOffRequests && adminDashboard" class="requests-container">
         <ng-template ngFor let-request [ngForOf]="timeOffRequests">
-            <div (click)="approveRequest(request.Id)" *ngIf="request.Status === 'Awaiting Approval'" class="request-list-item">
+            <div (click)="approveRequest(request)" *ngIf="request.Status === 'Awaiting Approval'" class="request-list-item">
                 <div>{{request.Name}}</div>
                 <div id="admin-date-field">{{request.StartTime | date: 'MM/dd/yy'}} to {{request.EndTime | date: 'MM/dd/yy'}}</div>
                 <div [class.approved]="request.Status === 'Approved'" [class.rejected]="request.Status === 'Rejected'" [class.awaiting-approval]="request.Status === 'Awaiting Approval'" class="status">{{request.Status}}</div>
@@ -23,7 +23,7 @@
         </ng-template>
     </div>
     <div *ngIf="timeOffRequests && employeeDashboard" class="requests-container">
-        <ng-template ngFor let-request [ngForOf]="timeOffRequests" let-i="index">
+        <ng-template ngFor let-request [ngForOf]="timeOffRequests">
             <div (click)="updateRequest(request)" class="request-list-item">
                 <div>{{request.Name}}</div>
                 <div id="employee-date-field">{{request.StartTime | date: 'MM/dd/yy'}} to {{request.EndTime | date: 'MM/dd/yy'}}</div>
