@@ -68,3 +68,13 @@ button {
     margin-right: 0.25em;
     font-size: 1em;
 }
+
+textarea {
+    resize: none;
+    height: 5em;
+    width: 10em;
+    border: 1px solid black;
+    font-family: inherit;
+    padding: 0.25em;
+    font-size: 1em;
+}

@@ -24,7 +24,8 @@
     </div>
     <div class="row">
         <div class="label">Comments: </div>
-        <div class="description">{{request.Comments}}</div>
+        <div *ngIf="!showAdminButtons" class="description">{{request.Comments}}</div>
+        <textarea *ngIf="showAdminButtons" [(ngModel)]="request.Comments" class="description"></textarea>
     </div>
     <div *ngIf="showAdminButtons" class="button-row">
         <button (click)="approveRequest()">

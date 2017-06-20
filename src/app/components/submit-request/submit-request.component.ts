@@ -60,7 +60,7 @@ export class SubmitRequestComponent implements OnInit {
         request.EndTime = this.endTime;
         request.Reason = this.reason;
         request.Status = 'Awaiting Approval';
-        request.Comments = this.comments ? this.comments : '';
+        request.Comments = '';
         return request;
     }
 
