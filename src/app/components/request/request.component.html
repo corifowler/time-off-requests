@@ -1,4 +1,7 @@
 <div class="request-container" *ngIf="request">
+    <div (click)="backToDashboard()" class="back">
+        <i class="fa fa-angle-left" aria-hidden="true"></i> Back to Dashboard
+    </div>
     <div class="header">
         Request {{request.Id}} -
         <span class="status" [class.awaiting-approval]="request.Status === 'Awaiting Approval'" [class.approved]="request.Status === 'Approved'" [class.rejected]="request.Status === 'Rejected'">{{request.Status}}</span>

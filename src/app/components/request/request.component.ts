@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Request } from '../../models/request';
 import { TimeOffRequestActions } from '../../actionHandlers/timeOffRequest.actions';
@@ -23,6 +23,7 @@ export class RequestComponent implements OnInit, OnDestroy {
 
     constructor(
         private _store: Store<any>,
+        private _router: Router,
         private _route: ActivatedRoute,
         private _timeOffRequestActions: TimeOffRequestActions
     ) {}
@@ -60,5 +61,9 @@ export class RequestComponent implements OnInit, OnDestroy {
     private rejectRequest() {
         this.request.Status = this.statusOptions.rejected;
         this._timeOffRequestActions.updateTimeOffRequest(this.request);
+    }
+
+    private backToDashboard() {
+        this._router.navigate(['/']);
     }
 }
