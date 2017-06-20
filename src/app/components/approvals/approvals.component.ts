@@ -10,7 +10,7 @@ import { TimeOffRequestActions } from '../../actionHandlers/timeOffRequest.actio
   styleUrls: ['./approvals.component.css']
 })
 export class ApprovalsComponent implements OnInit, OnDestroy {
-	private sampleData;
+	private timeOffRequests;
 	private timeOffRequestsSubscription;
 
 	constructor(
@@ -20,13 +20,15 @@ export class ApprovalsComponent implements OnInit, OnDestroy {
 	) {}
 
 	public ngOnInit() {
+		this._timeOffRequestActions.updateAdminView(true);
+
 		this.timeOffRequestsSubscription = this._store.select('timeOffRequests').subscribe(
 			requests => {
 				if (requests) {
-					this.sampleData = requests;
+					this.timeOffRequests = requests;
 				}
 			}
-		)
+		);
 	}
 
 	public ngOnDestroy() {
@@ -34,7 +36,7 @@ export class ApprovalsComponent implements OnInit, OnDestroy {
 	}
 
 	private reviewRequest(requestId) {
-		let request = this.sampleData.find(data => {
+		let request = this.timeOffRequests.find(data => {
 			return data.Id === requestId;
 		});
 		this._timeOffRequestActions.updateSelectedRequest(request);

@@ -61,3 +61,15 @@
     color: #0B3D92;
     cursor: pointer;
 }
+
+#admin-date-field,
+#employee-date-field {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    #admin-date-field,
+    #employee-date-field {
+        display: block;
+    }
+}

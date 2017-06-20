@@ -1,8 +1,8 @@
 <div class="approvals-container">
     <div class="header">Requests</div>
-    <div *ngFor="let d of sampleData" (click)="reviewRequest(d.Id)" class="request-list-item">
-        <div>{{d.Name}}</div>
-        <div>{{d.StartTime | date: 'MM/dd/yy'}} to {{d.EndTime | date: 'MM/dd/yy'}}</div>
-        <div [class.approved]="d.Status === 'Approved'" [class.rejected]="d.Status === 'Rejected'" [class.awaiting-approval]="d.Status === 'Awaiting Approval'" class="status">{{d.Status}}</div>
+    <div *ngFor="let request of timeOffRequests" (click)="reviewRequest(request.Id)" class="request-list-item">
+        <div>{{request.Name}}</div>
+        <div id="date-field">{{request.StartTime | date: 'MM/dd/yy'}} to {{request.EndTime | date: 'MM/dd/yy'}}</div>
+        <div [class.approved]="request.Status === 'Approved'" [class.rejected]="request.Status === 'Rejected'" [class.awaiting-approval]="request.Status === 'Awaiting Approval'" class="status">{{request.Status}}</div>
     </div>
 </div>

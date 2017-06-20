@@ -48,10 +48,6 @@ export class SubmitRequestComponent implements OnInit {
         this.validRequest = this.validateRequest(request);
         if (this.validRequest) {
             this._timeOffRequestActions.postTimeOffRequest(request);
-            // this._router.navigate(['/requests', request.Id]);
-        } else {
-            console.log('not valid', this.validFormElements.emailAddress);
-            // error messages
         }
     }
 

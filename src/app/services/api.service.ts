@@ -38,7 +38,6 @@ export class ApiService {
 
         return this._http.post(this.apiBaseUrl, JSON.stringify(request), { headers })
             .map(res => {
-                console.log(res.json());
                 return res.json();
             })
             .catch(err => {
@@ -62,7 +61,6 @@ export class ApiService {
     public deleteTimeOffRequest(requestId) {
         return this._http.delete(this.apiBaseUrl + `/${requestId}`)
             .map(res => {
-                console.log(res.json());
                 return res.json();
             })
             .catch(err => {
