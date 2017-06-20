@@ -16,8 +16,10 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Notable Dependencies
 
-[RxJS - Reactive Extensions](https://github.com/Reactive-Extensions/RxJS)
-[ngrx - State Management](https://github.com/ngrx)
+[RxJS - Reactive Extensions](https://github.com/Reactive-Extensions/RxJS) for events and observables.
+
+[ngrx - State Management](https://github.com/ngrx) similar to Redux.
+
 [LiveServer - for running the build](https://github.com/tapio/live-server)
 
 ## Further help
